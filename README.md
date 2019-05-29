@@ -36,3 +36,4 @@ implementation 'com.github.YanYoJun:androidDeviceInfo:1.0.6
 ```
 # 当前最新版本
 1.0.6
+# 欢迎提Bug
