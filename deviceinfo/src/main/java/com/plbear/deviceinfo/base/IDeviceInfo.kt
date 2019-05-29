@@ -17,7 +17,7 @@ interface IDeviceInfo {
     fun availMemory(): Long
     fun imsi(): String
     fun iccid(): String
-    fun ua(callback: (String) -> Unit)
+    fun ua():String
     fun phoneName(): String
     fun osVersion(): String
     fun sdkVersion(): Int

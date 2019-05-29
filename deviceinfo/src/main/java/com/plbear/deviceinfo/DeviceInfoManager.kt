@@ -30,7 +30,7 @@ class DeviceInfoManager(val context: Context) {
 
     /**
      * 当没有对应权限的时候, 直接返回""
-     * @permission android.permission.READ_PHONE_STATE
+     * @permission android.permiussion.READ_PHONE_STATE
      */
     fun imei(): String {
         return try {
@@ -253,13 +253,11 @@ class DeviceInfoManager(val context: Context) {
     /**
      * 获取WebView的userAgent
      */
-    fun ua(listener: OnGetListener) {
-        try {
-            deviceInfo.ua {
-                listener.onGet(it)
-            }
+    fun ua(): String {
+        return try {
+            deviceInfo.ua()
         } catch (e: Exception) {
-            listener.onGet("")
+            return ""
         }
     }
 

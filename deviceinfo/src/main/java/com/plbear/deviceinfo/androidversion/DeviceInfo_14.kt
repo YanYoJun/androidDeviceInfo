@@ -169,15 +169,8 @@ open class DeviceInfo_14(var context: Context) : IDeviceInfo {
         return ""
     }
 
-    override fun ua(callback: (String) -> Unit) {
-        if (mHandler == null) {
-            mHandler = Handler(Looper.getMainLooper())
-        }
-        mHandler!!.post {
-            val webView = WebView(context)
-            val ua = webView.settings.userAgentString
-            callback(ua)
-        }
+    override fun ua(): String {
+        return System.getProperty("http.agent")
     }
 
     override fun phoneName(): String {

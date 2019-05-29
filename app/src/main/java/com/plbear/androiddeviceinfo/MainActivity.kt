@@ -29,11 +29,12 @@ class MainActivity : AppCompatActivity() {
         linearlayout.addView(createTextView("serial: ${DeviceInfoManager.get(this).serial()}"))
         linearlayout.addView(createTextView("simOperator: ${DeviceInfoManager.get(this).simOperator()}"))
         linearlayout.addView(createTextView("totalMemory: ${DeviceInfoManager.get(this).totalMemory()}"))
-        DeviceInfoManager.get(this).ua(object : OnGetListener {
-            override fun onGet(result: String) {
-                linearlayout.addView(createTextView("ua:$result"))
-            }
-        })
+        linearlayout.addView(createTextView("ua:${DeviceInfoManager.get(this).ua()}"))
+//        DeviceInfoManager.get(this).ua(object : OnGetListener {
+//            override fun onGet(result: String) {
+//                linearlayout.addView(createTextView("ua:$result"))
+//            }
+//        })
 
         DeviceInfoManager.get(this).iccid(object : OnGetListener {
             override fun onGet(result: String) {
