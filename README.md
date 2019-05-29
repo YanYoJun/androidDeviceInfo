@@ -32,7 +32,7 @@
 ```
 在模块目录下添加
 ```
-implementation 'com.github.YanYoJun:androidDeviceInfo:1.0.6
+implementation 'com.github.YanYoJun:androidDeviceInfo:1.0.6'
 ```
 # 当前最新版本
 1.0.6
