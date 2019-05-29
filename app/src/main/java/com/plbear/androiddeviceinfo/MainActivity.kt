@@ -29,6 +29,18 @@ class MainActivity : AppCompatActivity() {
         linearlayout.addView(createTextView("serial: ${DeviceInfoManager.get(this).serial()}"))
         linearlayout.addView(createTextView("simOperator: ${DeviceInfoManager.get(this).simOperator()}"))
         linearlayout.addView(createTextView("totalMemory: ${DeviceInfoManager.get(this).totalMemory()}"))
+        DeviceInfoManager.get(this).ua(object : OnGetListener {
+            override fun onGet(result: String) {
+                linearlayout.addView(createTextView("ua:$result"))
+            }
+        })
+
+        DeviceInfoManager.get(this).iccid(object : OnGetListener {
+            override fun onGet(result: String) {
+                linearlayout.addView(createTextView("iccid new:$result"))
+            }
+        })
+
     }
 
     fun createTextView(txt: String): TextView {

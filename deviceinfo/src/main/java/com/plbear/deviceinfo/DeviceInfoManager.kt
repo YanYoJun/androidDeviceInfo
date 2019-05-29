@@ -2,12 +2,10 @@ package com.plbear.deviceinfo
 
 import android.Manifest
 import android.content.Context
-import android.support.annotation.RequiresPermission
 import com.github.dfqin.grantor.PermissionListener
 import com.github.dfqin.grantor.PermissionsUtil
 import com.plbear.deviceinfo.base.DeviceInfoFactory
 import com.plbear.deviceinfo.base.IDeviceInfo
-import com.plbear.deviceinfo.utils.logcat
 import java.lang.Exception
 
 /**
@@ -30,10 +28,6 @@ class DeviceInfoManager(val context: Context) {
         }
     }
 
-    init {
-        logcat("DeviceInfoManager init:" + this)
-    }
-
     /**
      * 当没有对应权限的时候, 直接返回""
      * @permission android.permission.READ_PHONE_STATE
@@ -54,12 +48,10 @@ class DeviceInfoManager(val context: Context) {
     fun imei(listener: OnGetListener) {
         PermissionsUtil.requestPermission(context, object : PermissionListener {
             override fun permissionDenied(permission: Array<out String>) {
-                logcat("on permission denied")
                 listener.onGet("")
             }
 
             override fun permissionGranted(permission: Array<out String>) {
-                logcat("on permission granted")
                 listener.onGet(imei())
             }
         }, Manifest.permission.READ_PHONE_STATE)
