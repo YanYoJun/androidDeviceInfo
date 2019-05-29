@@ -10,7 +10,6 @@ import com.plbear.deviceinfo.androidversion.*
 object DeviceInfoFactory {
     fun create(context: Context): IDeviceInfo {
         val sdk = Build.VERSION.SDK_INT
-        val board = Build.BOARD.toLowerCase()
         return when (sdk) {
             Build.VERSION_CODES.ICE_CREAM_SANDWICH -> DeviceInfo_14(context)
             Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1 -> DeviceInfo_15(context)
