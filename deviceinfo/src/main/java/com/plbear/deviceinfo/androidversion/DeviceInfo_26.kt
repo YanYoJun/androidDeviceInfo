@@ -20,6 +20,6 @@ open class DeviceInfo_26(context: Context) : DeviceInfo_25(context) {
         if(PermissionsUtil.hasPermission(context,Manifest.permission.READ_PHONE_STATE)) {
             return Build.getSerial()
         }
-        return ""
+        return super.serial()
     }
 }
