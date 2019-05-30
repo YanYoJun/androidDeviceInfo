@@ -1,19 +1,15 @@
 package com.plbear.deviceinfo.androidversion
 
-import android.Manifest
 import android.app.ActivityManager
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.util.DisplayMetrics
 import android.view.WindowManager
-import android.webkit.WebView
-import com.github.dfqin.grantor.PermissionsUtil
 import com.plbear.deviceinfo.base.IDeviceInfo
 import java.net.NetworkInterface
 import java.util.*
@@ -32,10 +28,7 @@ open class DeviceInfo_14(var context: Context) : IDeviceInfo {
     private var mWindowsManager: WindowManager? = null
 
     override fun imei(): String {
-        if (PermissionsUtil.hasPermission(context, Manifest.permission.READ_PHONE_STATE)) {
-            return getTelephonyManager().deviceId
-        }
-        return ""
+        return getTelephonyManager().deviceId
     }
 
     override fun networkType(): String {
@@ -144,9 +137,7 @@ open class DeviceInfo_14(var context: Context) : IDeviceInfo {
     }
 
     override fun totalMemory(): Long {
-        val mem = ActivityManager.MemoryInfo()
-        getActivityManager().getMemoryInfo(mem)
-        return mem.totalMem
+        return 0
     }
 
     override fun availMemory(): Long {
@@ -156,17 +147,11 @@ open class DeviceInfo_14(var context: Context) : IDeviceInfo {
     }
 
     override fun imsi(): String {
-        if (PermissionsUtil.hasPermission(context, Manifest.permission.READ_PHONE_STATE)) {
-            return getTelephonyManager().subscriberId ?: ""
-        }
-        return ""
+        return getTelephonyManager().subscriberId ?: ""
     }
 
     override fun iccid(): String {
-        if (PermissionsUtil.hasPermission(context, Manifest.permission.READ_PHONE_STATE)) {
-            return getTelephonyManager().simSerialNumber ?: ""
-        }
-        return ""
+        return getTelephonyManager().simSerialNumber ?: ""
     }
 
     override fun ua(): String {

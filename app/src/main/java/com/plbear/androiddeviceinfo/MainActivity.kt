@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity() {
 //                linearlayout.addView(createTextView("ua:$result"))
 //            }
 //        })
-
-        DeviceInfoManager.get(this).iccid(object : OnGetListener {
-            override fun onGet(result: String) {
-                linearlayout.addView(createTextView("iccid new:$result"))
-            }
-        })
+//
+//        DeviceInfoManager.get(this).iccid(object : OnGetListener {
+//            override fun onGet(result: String) {
+//                linearlayout.addView(createTextView("iccid new:$result"))
+//            }
+//        })
 
     }
 

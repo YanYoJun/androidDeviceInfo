@@ -2,8 +2,6 @@ package com.plbear.deviceinfo
 
 import android.Manifest
 import android.content.Context
-import com.github.dfqin.grantor.PermissionListener
-import com.github.dfqin.grantor.PermissionsUtil
 import com.plbear.deviceinfo.base.DeviceInfoFactory
 import com.plbear.deviceinfo.base.IDeviceInfo
 import java.lang.Exception
@@ -42,22 +40,6 @@ class DeviceInfoManager(val context: Context) {
     }
 
     /**
-     * 当没有对应权限的时候, 会自动申请权限. 申请成功后, 回调listener告知结果
-     * @permission android.permission.READ_PHONE_STATE
-     */
-    fun imei(listener: OnGetListener) {
-        PermissionsUtil.requestPermission(context, object : PermissionListener {
-            override fun permissionDenied(permission: Array<out String>) {
-                listener.onGet("")
-            }
-
-            override fun permissionGranted(permission: Array<out String>) {
-                listener.onGet(imei())
-            }
-        }, Manifest.permission.READ_PHONE_STATE)
-    }
-
-    /**
      * 读取网络类型
      * @permission android.permission.ACCESS_NETWORK_STATE
      * @return "wifi" "cell" "bluetooth" "other"
@@ -66,6 +48,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.networkType()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -79,6 +62,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.wifiSsid()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -90,6 +74,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.wifiBssid()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -101,6 +86,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.localWifiMac()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -114,25 +100,9 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.serial()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
-    }
-
-    /**
-     * Android6.0以上, 如果没有权限,则会尝试申请权限
-     * serial
-     * @permission android.permission.READ_PHONE_STATE
-     */
-    fun serial(listener: OnGetListener) {
-        PermissionsUtil.requestPermission(context, object : PermissionListener {
-            override fun permissionDenied(permission: Array<out String>) {
-                listener.onGet(serial())
-            }
-
-            override fun permissionGranted(permission: Array<out String>) {
-                listener.onGet(serial())
-            }
-        }, Manifest.permission.READ_PHONE_STATE)
     }
 
     /**
@@ -142,6 +112,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.androidId()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -153,6 +124,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.screenWidth()
         } catch (e: Exception) {
+            e.printStackTrace()
             0
         }
     }
@@ -164,6 +136,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.screenHeight()
         } catch (e: Exception) {
+            e.printStackTrace()
             0
         }
     }
@@ -175,6 +148,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.totalMemory()
         } catch (e: Exception) {
+            e.printStackTrace()
             0
         }
     }
@@ -186,6 +160,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.availMemory()
         } catch (e: Exception) {
+            e.printStackTrace()
             0
         }
     }
@@ -199,25 +174,9 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.imsi()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
-    }
-
-    /**
-     * 会去尝试申请权限
-     * imsi 与你的手机卡是绑定关系 用于区别移动用户的有效信息 IMSI是用户的标识。
-     * @permission android.permission.READ_PHONE_STATE
-     */
-    fun imsi(listener: OnGetListener) {
-        PermissionsUtil.requestPermission(context, object : PermissionListener {
-            override fun permissionDenied(permission: Array<out String>) {
-                listener.onGet(imsi())
-            }
-
-            override fun permissionGranted(permission: Array<out String>) {
-                listener.onGet(imsi())
-            }
-        }, Manifest.permission.READ_PHONE_STATE)
     }
 
     /**
@@ -229,25 +188,9 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.iccid()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
-    }
-
-    /**
-     * Android6.0以上, 如果没有权限, 则会尝试去申请权限
-     * ICCID是卡的标识，由20位数字组成
-     * @permission android.permission.READ_PHONE_STATE
-     */
-    fun iccid(listener: OnGetListener) {
-        PermissionsUtil.requestPermission(context, object : PermissionListener {
-            override fun permissionDenied(permission: Array<out String>) {
-                listener.onGet(iccid())
-            }
-
-            override fun permissionGranted(permission: Array<out String>) {
-                listener.onGet(iccid())
-            }
-        }, Manifest.permission.READ_PHONE_STATE)
     }
 
     /**
@@ -257,6 +200,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.ua()
         } catch (e: Exception) {
+            e.printStackTrace()
             return ""
         }
     }
@@ -268,6 +212,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.phoneName()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -279,6 +224,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.osVersion()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -290,6 +236,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.sdkVersion()
         } catch (e: Exception) {
+            e.printStackTrace()
             0
         }
     }
@@ -301,6 +248,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.simReady()
         } catch (e: Exception) {
+            e.printStackTrace()
             false
         }
     }
@@ -312,6 +260,7 @@ class DeviceInfoManager(val context: Context) {
         return try {
             deviceInfo.simOperator()
         } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
