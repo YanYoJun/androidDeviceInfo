@@ -1,6 +1,5 @@
 package com.plbear.deviceinfo
 
-import android.Manifest
 import android.content.Context
 import com.plbear.deviceinfo.base.DeviceInfoFactory
 import com.plbear.deviceinfo.base.IDeviceInfo
@@ -13,16 +12,16 @@ class DeviceInfoManager(val context: Context) {
     private val deviceInfo: IDeviceInfo = DeviceInfoFactory.create(context)
 
     companion object {
-        private var instance: DeviceInfoManager? = null
+        private var ins: DeviceInfoManager? = null
         fun get(context: Context): DeviceInfoManager {
-            if (instance == null) {
+            if (ins == null) {
                 synchronized(DeviceInfoManager::class.java) {
-                    if (instance == null) {
-                        instance = DeviceInfoManager(context)
+                    if (ins == null) {
+                        ins = DeviceInfoManager(context)
                     }
                 }
             }
-            return instance!!
+            return ins!!
         }
     }
 
